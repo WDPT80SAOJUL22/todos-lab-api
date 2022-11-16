@@ -25,7 +25,7 @@ router.post('/signup', async (req, res) => {
         })
         res.status(201).json({user: newUser.name, email: newUser.email})
     } catch (error) {
-        res.status(500).json({msg:`User not created`})
+        res.status(500).json({msg:`User not created: ${error.message}`})
     }
 })
 
@@ -49,8 +49,8 @@ router.post('/login', async (req, res) => {
             expiresIn: '1d'    
         })
         res.status(200).json({user: payload, token})
-    } catch {
-        res.status(500).json({msg:`Login error`})
+    } catch (error) {
+        res.status(500).json({msg:`Login error: ${error.message}`})
     }
 })
 
